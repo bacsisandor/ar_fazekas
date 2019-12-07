@@ -4,8 +4,17 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>GeoAR.js demo</title>
-    <script src='https://aframe.io/releases/0.6.0/aframe.min.js'></script>
+    <script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script>
     <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
     <script>
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
         
@@ -28,7 +37,7 @@
 <!-- Dynamically add places from Javascript -->
 <script src="./places.js"></script>
 
-<body onload="load()" style='margin: 0; overflow: hidden;'>
+<body style='margin: 0; overflow: hidden;'>
     <a-scene
         cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
         raycaster="objects: [gps-entity-place];"
@@ -36,24 +45,46 @@
 		embedded
 		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-assets>
-            <a-asset-item id="trash" scr="public_bin_free/scene.gltf"></a-asset-item>
+            <a-asset-item id="trash2" src="public_bin_3d/scene.gltf"> </a-asset-item>
+            <a-asset-item id="trash" src="scene.gltf"> </a-asset-item>
             <a-asset-item id="brainstem" src="https://cdn.aframe.io/test-models/models/brainstem/BrainStem.gltf"></a-asset-item>
           </a-assets>
         
-          <a-entity gltf-model="#trash" position="5 0 0" scale="3 3 3"></a-entity>
+          <a-entity gltf-model="#trash2" position="-5 0 0" scale="1 1 1"></a-entity>
+          <a-entity gltf-model="#brainstem" position="5 0 0" scale="1 1 1"></a-entity>
         <a-camera gps-camera="minDistance: 40;" rotation-reader>
         </a-camera>
     </a-scene>
     <script>
-        function create(){
         document.querySelector('a-scene').addEventListener('touchstart', function (evt) {
         console.log('This 2D element was clicked!');
         var sceneEl = document.querySelector('a-scene');
-        var entityEl = document.createElement('a-entity');
-        entityEl.setAttribute('geometry', 'public_bin__free/scene.gltf' )
-        entityEl.setAttribute("position", "12 0 0");
-       // entityEl.setAttribute("color", "green");
-       // entityEl.setAttribute('height', 3);
-        sceneEl.appendChild(entityEl);
-      });}</script>
+            var entityEl = document.createElement('a-entity');
+            entityEl.setAttribute("position", "12 0 0");
+            entityEl.setAttribute('height', 3);
+            entityEl.setAttribute('gltf-model', 'scene.gltf' )
+
+            sceneEl.appendChild(entityEl);
+      });</script>
+      <script>
+      // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBT0SdFfMSNTZWyEAPx8Cx28I_Waq-lITg",
+    authDomain: "fazekas-ar-project.firebaseapp.com",
+    databaseURL: "https://fazekas-ar-project.firebaseio.com",
+    projectId: "fazekas-ar-project",
+    storageBucket: "fazekas-ar-project.appspot.com",
+    messagingSenderId: "56442286432",
+    appId: "1:56442286432:web:82117be36c7932819a6e05",
+    measurementId: "G-VYTBF43DY0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+</script>
+      <script>
+var database = firebase.database();
+database.ref('fazekas-ar-project');                      
+      </script>
 </body>

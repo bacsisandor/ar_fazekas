@@ -71,6 +71,7 @@ window.onload = () => {
                     text.setAttribute('title', place.name);
                     text.setAttribute('href', 'http://www.example.com/');
                     text.setAttribute('scale', '13 13 13');
+                    text.setAttribute('gltf-model', 'scene.gltf')
 
                     text.addEventListener('loaded', () => {
                         window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
