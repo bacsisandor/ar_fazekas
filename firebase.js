@@ -50,6 +50,11 @@ function locerror(error) {
 
 function setPosition(position) {
   console.log('setpos run');
-  writeUserData(position.coords.latitude, position.coords.longitude);
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+  alert("2");
+  writeUserData(latitude, longitude);
+  entityEl.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`);
+  entityEl.setAttribute('title', 'Your bin');
 }
 
