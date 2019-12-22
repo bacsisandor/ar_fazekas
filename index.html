@@ -30,6 +30,7 @@
 		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-assets>
             <a-asset-item id="trash" src="scene.gltf"> </a-asset-item>
+            <a-asset-item id="trash2" src="scene2.gltf"></a-asset-item>
           </a-assets>
         <a-camera gps-camera="minDistance: 40;" rotation-reader>
         </a-camera>
@@ -42,7 +43,7 @@
             var entityEl = document.createElement('a-entity');
             entityEl.setAttribute("position", "0 0 10");
             entityEl.setAttribute('height', 3);
-            entityEl.setAttribute('gltf-model', 'scene.gltf')
+            entityEl.setAttribute('gltf-model', 'scene2.gltf')
             sceneEl.appendChild(entityEl);
             getLocation();
       });
